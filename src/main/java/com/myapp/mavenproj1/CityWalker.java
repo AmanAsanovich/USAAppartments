@@ -49,7 +49,7 @@ public class CityWalker {
         dDoc = Jsoup.connect(sCityLinkFirst).get();                              // Get city page
         sCity = dDoc.select(".SiOL_ span[data-test-id=breadcrumb]").text();
 
-        System.out.println("\nCity: "+sCity+"\n===");
+        System.out.println("\nCity: "+sCity+"\n===\nPage 1");
 
         Row row = DScraping.theSheet.createRow(DScraping.iRowNumber++);     // Title (city name) in the xls file
         Cell cell = row.createCell(0, CellType.STRING);
