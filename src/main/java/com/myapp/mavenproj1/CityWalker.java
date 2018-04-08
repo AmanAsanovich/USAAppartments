@@ -56,7 +56,7 @@ public class CityWalker {
         cell.setCellValue(sCity);
         
         ScrapWebPage pagesScraper = new ScrapWebPage();
-        pagesScraper.Scrap(dDoc, sCity);
+        pagesScraper.Scrap(dDoc, sCity);                    // Scrap the current page
         
         Elements ePagination = dDoc.select(".tYnqB li a");  // How many pages for the city?
         if (!ePagination.isEmpty()) {
@@ -77,14 +77,14 @@ public class CityWalker {
             }
 
             for (int i = 2; i <= iPaginationCount; i++) {
-                sCityLink = sCityLinkFirst.concat("?page=");
+                sCityLink = sCityLinkFirst.concat("?page=");        
                 sCityLink = sCityLink.concat(String.valueOf(i));
                 System.out.println("Page "+ Integer.toString(i));
 
                 dDoc = Jsoup.connect(sCityLink).get();
-                pagesScraper.Scrap(dDoc, sCity);
+                pagesScraper.Scrap(dDoc, sCity);            // Scrap another page
 
-                DScraping.myDelay(1,2);
+                DScraping.myDelay(1,2);                      // Be polite plz
             }
         }
         

@@ -53,9 +53,9 @@ public class DScraping {
     
     
     public DScraping() {
-        this.sTargetSiteUrl = "https://www.apartmentguide.com";
+        DScraping.sTargetSiteUrl = "https://www.apartmentguide.com";
 
-        this.book = new SXSSFWorkbook(100);
+        DScraping.book = new SXSSFWorkbook(100);
         
         long lRdm = Math.round(((Math.random() * 2) + 1)*1000);
         Long.toString(lRdm);
@@ -67,7 +67,7 @@ public class DScraping {
         } catch (IOException ex) {
             LOG.log(Level.SEVERE, null, ex);
         }
-        this.eStates = dDoc.select(".browse_links a");       // List of States
+        this.eStates = dDoc.select(".browse_links a");       // List of US States
 
 }
 
@@ -81,7 +81,7 @@ public class DScraping {
         // For every state get cities
         for (Element elem : eStates) {
             
-            // For debuging - Small states 12-13, 20, 30, 40
+            // For debuging, because data is large - Small states 2, 8, 12-13, 20, 30, 40, 51
             i++;
             if (i < 40) {
                 continue;
@@ -89,16 +89,14 @@ public class DScraping {
             if (i > 40) {
                 break;
             }
-            // For debuging - Small states 12-13, 20, 30, 40
+            // For debuging, because data is large - Small states 2, 8, 12-13, 20, 30, 40, 51
 
             sStateLink = elem.attr("href");
-            this.sTheState = sStateLink.replaceFirst("/[\\w-]+/([\\w-]+)/", "$1");  //  /appartments/Alabama/ -> Alabama
+            DScraping.sTheState = sStateLink.replaceFirst("/[\\w-]+/([\\w-]+)/", "$1");  //  /appartments/Alabama/ -> Alabama
             
-            this.theSheet = book.createSheet(this.sTheState);
-            this.iRowNumber = 0;
+            DScraping.theSheet = book.createSheet(DScraping.sTheState);
+            DScraping.iRowNumber = 0;
             LOG.log(Level.INFO, sTheState);
-            
-//            System.out.println(sTargetSiteUrl.concat(sStateLink) );
             
             dCitiesDoc = Jsoup.connect(sTargetSiteUrl.concat(sStateLink)).get();  // Open this state page and get cities
             Elements eCities = dCitiesDoc.select(".browse_links a");    // All cities of the state are here in the page, ther is no pagination
@@ -108,7 +106,7 @@ public class DScraping {
                 CityWalker wayfarer = new CityWalker();
                 wayfarer.execute(eCity.attr("href"));
 
-                DScraping.myDelay(1,1);
+                DScraping.myDelay(1,1);                      // Try to be polite
             }
 
         }
@@ -122,10 +120,6 @@ public class DScraping {
         long lRnd;
         max -= min;
         lRnd = Math.round(((Math.random() * max) + min)*1000);
-/*
-            System.out.println(lRnd);
-            System.out.println("");
-*/
         try {
             TimeUnit.MILLISECONDS.sleep(lRnd);
         }
