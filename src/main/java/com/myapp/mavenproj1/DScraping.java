@@ -83,10 +83,10 @@ public class DScraping {
             
             // For debuging, because data is large - Small states 2, 8, 12-13, 20, 29, 30, 40, 51
             i++;
-            if (i < 1) {
+            if (i < 8) {
                 continue;
             }
-            if (i > 1) {
+            if (i > 8) {
                 break;
             }
             // For debuging, because data is large - Small states 2, 8, 12-13, 20, 29, 30, 40, 51
