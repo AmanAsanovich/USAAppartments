@@ -16,23 +16,16 @@
 package com.myapp.mavenproj1;
 
 import java.util.logging.Level;
-import org.apache.poi.hssf.util.HSSFColor;
 
-import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Color;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.common.usermodel.HyperlinkType;
 import org.apache.poi.ss.usermodel.Hyperlink;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import static org.apache.poi.ss.usermodel.IndexedColors.BLUE;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFFont;
-import org.apache.poi.xssf.usermodel.XSSFHyperlink;
+import org.apache.poi.common.usermodel.HyperlinkType;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -55,11 +48,9 @@ public class ScrapWebPage {
         CreationHelper createHelper = DScraping.book.getCreationHelper();
         CellStyle hlinkstyle = DScraping.book.createCellStyle();
         Font hlinkfont = DScraping.book.createFont();
-//        hlinkfont.setUnderline(XSSFFont.U_SINGLE);
         hlinkfont.setColor(IndexedColors.BLUE.getIndex());
         hlinkstyle.setFont(hlinkfont);
 
-//        NumberFormat nf = NumberFormat.getNumberInstance();
         eAppartments = dDoc.select("._1GY9b");
         for (Element el : eAppartments) {
             

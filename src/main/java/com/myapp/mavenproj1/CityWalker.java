@@ -45,14 +45,11 @@ public class CityWalker {
 
         String sCity;
 
-//      Dscaping.LOG.log(INFO, el.attr("href"));
         sCityLinkFirst = DScraping.sTargetSiteUrl.concat(sSubLinkToCity);
-//        Dscaping.LOG.log(INFO, sCityLink);
         dDoc = Jsoup.connect(sCityLinkFirst).get();                              // Get city page
-//        sState = dDoc.select(".SiOL_ a[data-tag_item=state] span").text();   // Get state name
         sCity = dDoc.select(".SiOL_ span[data-test-id=breadcrumb]").text();
 
-        System.out.println("\n"+sCity+"\n=============================================================");
+        System.out.println("\nCity: "+sCity+"\n===");
 
         Row row = DScraping.theSheet.createRow(DScraping.iRowNumber++);     // Title (city name) in the xls file
         Cell cell = row.createCell(0, CellType.STRING);
@@ -68,7 +65,7 @@ public class CityWalker {
             String sLastIndex = "";
             if (ePagination.size() == 10) {         // More than or eq 10
                 try {
-                    sLastIndex = ePagination.get(8).text();     // 10 links, statrs with 2, last link is "Next"
+                    sLastIndex = ePagination.get(8).text();     // Get number of pages. 10 links, statrs with 2, last link is "Next"
                 }
                 catch (IndexOutOfBoundsException e) {
                     DScraping.LOG.log(Level.SEVERE, null, e);
@@ -76,7 +73,7 @@ public class CityWalker {
                 iPaginationCount = Integer.parseInt(sLastIndex);
             }
             else {
-                iPaginationCount = ePagination.size();      // Less than 10
+                iPaginationCount = ePagination.size();      // Less than or eq 10
             }
 
             for (int i = 2; i <= iPaginationCount; i++) {

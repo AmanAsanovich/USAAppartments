@@ -83,10 +83,10 @@ public class DScraping {
             
             // For debuging - Small states 12-13, 20, 30, 40
             i++;
-            if (i < 13) {
+            if (i < 40) {
                 continue;
             }
-            if (i > 13) {
+            if (i > 40) {
                 break;
             }
             // For debuging - Small states 12-13, 20, 30, 40
