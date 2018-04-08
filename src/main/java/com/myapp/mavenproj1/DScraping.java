@@ -80,7 +80,7 @@ public class DScraping {
         int i = 0;
         // For every state get cities
         for (Element elem : eStates) {
-            
+/*            
             // For debuging, because data is large - Small states 2, 8, 12-13, 20, 29, 30, 40, 51
             i++;
             if (i < 8) {
@@ -90,7 +90,7 @@ public class DScraping {
                 break;
             }
             // For debuging, because data is large - Small states 2, 8, 12-13, 20, 29, 30, 40, 51
-
+*/
             sStateLink = elem.attr("href");
             DScraping.sTheState = sStateLink.replaceFirst("/[\\w-]+/([\\w-]+)/", "$1");  //  /appartments/Alabama/ -> Alabama
             
