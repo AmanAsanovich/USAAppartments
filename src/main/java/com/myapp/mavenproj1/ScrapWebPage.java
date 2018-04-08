@@ -15,8 +15,6 @@
  */
 package com.myapp.mavenproj1;
 
-import java.util.logging.Level;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
